@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Staff Dashboard - Kone Support</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .staff-container{max-width:1100px;margin:2rem auto;padding:1rem}
+    .login-box{background:rgba(8,18,11,0.6);border:1px solid rgba(16,185,129,0.2);padding:1.25rem;border-radius:8px;margin-bottom:1rem}
+    .tickets-list{display:grid;gap:1rem}
+    .ticket{background:rgba(8,18,11,0.6);border:1px solid rgba(16,185,129,0.15);padding:1rem;border-radius:8px}
+    .ticket-header{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+    .ticket-meta{color:var(--kone-text-tertiary);font-size:0.9rem}
+    .ticket-actions{display:flex;gap:0.5rem;margin-top:0.75rem}
+    .btn-sm{padding:0.4rem 0.75rem;border-radius:6px;border:none;cursor:pointer;font-weight:600}
+    .btn-respond{background:linear-gradient(135deg,#10b981 0%,#34d399 100%);color:var(--kone-dark-bg)}
+    .btn-close{background:rgba(239,68,68,0.15);color:#ef4444}
+    .btn-export{background:rgba(59,130,246,0.12);color:#3b82f6}
+    .ticket pre{white-space:pre-wrap;background:transparent;border:none;padding:0;margin:0;color:var(--kone-text-secondary)}
+    .staff-note{background:rgba(16,185,129,0.08);padding:0.75rem;border-radius:6px;margin-bottom:1rem}
+    .hidden{display:none}
+    @media (max-width:600px){.ticket-header{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand"><a href="index.html">Kone</a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="support.html">Support</a>
+      <a href="status.html">Status</a>
+    </div>
+    <div class="user-profile">
+      <div class="avatar-placeholder">S</div>
+      <span>Staff</span>
+      <span class="status-dot"></span>
+    </div>
+  </nav>
+
+  <main class="staff-container">
+    <div class="page-header">
+      <h1>Staff Dashboard</h1>
+      <p class="subtitle">View and respond to support tickets. This page uses client-side storage (localStorage) and simple client-side access control. For production, use a real backend and authentication.</p>
+    </div>
+
+    <div id="login" class="login-box">
+      <h3>Staff login</h3>
+      <p style="color:var(--kone-text-tertiary);margin-bottom:0.5rem">Enter the staff access key (configured in browser localStorage) to view tickets.</p>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+        <input id="staffKeyInput" type="password" placeholder="Enter staff key" style="padding:0.6rem;border-radius:6px;border:1px solid rgba(16,185,129,0.15);background:rgba(5,12,7,0.8);color:var(--kone-text-secondary);flex:1" />
+        <button id="loginBtn" class="btn-sm btn-respond">Unlock</button>
+        <button id="setKeyBtn" class="btn-sm btn-export">Set key</button>
+      </div>
+      <p style="margin-top:0.5rem;color:var(--kone-text-tertiary);font-size:0.9rem">If no access key is set, click "Set key" to store the value you entered into localStorage as the staff key. (This stores the key in your browser.)</p>
+    </div>
+
+    <div id="staffArea" class="hidden">
+      <div class="staff-note">
+        <strong>Staff-only</strong> — This page is intended for staff to manage tickets. Client-side protection is not secure. Use server-side auth for production.
+      </div>
+
+      <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap">
+        <button id="refreshBtn" class="btn-sm btn-export">Refresh</button>
+        <button id="exportBtn" class="btn-sm btn-export">Export tickets (JSON)</button>
+        <button id="clearResponsesBtn" class="btn-sm" style="background:rgba(239,68,68,0.12);color:#ef4444">Clear all responses</button>
+        <div style="margin-left:auto;color:var(--kone-text-tertiary);align-self:center">Tickets stored in localStorage &gt; supportTickets</div>
+      </div>
+
+      <div id="tickets" class="tickets-list"></div>
+    </div>
+
+  </main>
+
+  <script>
+    // Staff authentication using a key stored in localStorage
+    const loginEl = document.getElementById('login');
+    const staffArea = document.getElementById('staffArea');
+    const loginBtn = document.getElementById('loginBtn');
+    const setKeyBtn = document.getElementById('setKeyBtn');
+    const staffKeyInput = document.getElementById('staffKeyInput');
+
+    function isAuthenticated(){
+      return sessionStorage.getItem('staffAuthenticated') === 'true';
+    }
+
+    function showArea(){
+      loginEl.classList.add('hidden');
+      staffArea.classList.remove('hidden');
+      renderTickets();
+    }
+
+    function showLogin(){
+      loginEl.classList.remove('hidden');
+      staffArea.classList.add('hidden');
+    }
+
+    if(isAuthenticated()) showArea(); else showLogin();
+
+    loginBtn.addEventListener('click', ()=>{
+      const entered = staffKeyInput.value;
+      const stored = localStorage.getItem('staffAccessKey');
+      if(!stored){
+        alert('No staff access key is configured in this browser. Click "Set key" to configure one.');
+        return;
+      }
+      if(entered === stored){
+        sessionStorage.setItem('staffAuthenticated','true');
+        showArea();
+      } else {
+        alert('Invalid key.');
+      }
+    });
+
+    setKeyBtn.addEventListener('click', ()=>{
+      const entered = staffKeyInput.value;
+      if(!entered){ alert('Enter a key into the input first.'); return; }
+      localStorage.setItem('staffAccessKey', entered);
+      alert('Staff access key saved to localStorage. Use the same key to unlock this dashboard.');
+    });
+
+    // Tickets rendering and actions
+    const ticketsEl = document.getElementById('tickets');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const exportBtn = document.getElementById('exportBtn');
+    const clearResponsesBtn = document.getElementById('clearResponsesBtn');
+
+    function loadTickets(){
+      try{
+        return JSON.parse(localStorage.getItem('supportTickets')||'[]');
+      }catch(e){return []}
+    }
+
+    function saveTickets(tickets){
+      localStorage.setItem('supportTickets', JSON.stringify(tickets));
+    }
+
+    function renderTickets(){
+      const tickets = loadTickets().slice().reverse(); // newest first
+      ticketsEl.innerHTML = '';
+      if(tickets.length===0){ ticketsEl.innerHTML = '<div style="color:var(--kone-text-tertiary)">No tickets found.</div>'; return; }
+      tickets.forEach((t, idx)=>{
+        const div = document.createElement('div'); div.className='ticket';
+        const header = document.createElement('div'); header.className='ticket-header';
+        const title = document.createElement('div');
+        title.innerHTML = `<strong>${t.subject}</strong><div class="ticket-meta">${t.name} • ${t.email} • ${new Date(t.timestamp).toLocaleString()}</div>`;
+        const status = document.createElement('div'); status.innerHTML = `<div style="text-align:right"><span class="badge ${t.status==='closed'?'':'online'}">${(t.status||'new').toUpperCase()}</span></div>`;
+        header.appendChild(title); header.appendChild(status);
+        div.appendChild(header);
+
+        const body = document.createElement('div'); body.style.marginTop='0.75rem';
+        const meta = document.createElement('div'); meta.innerHTML = `<div class="ticket-meta">Category: ${t.category}</div>`;
+        const message = document.createElement('pre'); message.textContent = t.message;
+        body.appendChild(meta); body.appendChild(message);
+
+        if(t.responses){
+          t.responses.forEach(r=>{
+            const rdiv = document.createElement('div'); rdiv.style.marginTop='0.5rem'; rdiv.innerHTML = `<div style="color:#34d399;font-weight:700">Response</div><div style="color:var(--kone-text-secondary)">${r.text}</div><div class="ticket-meta">By: ${r.by||'staff'} • ${new Date(r.at).toLocaleString()}</div>`;
+            body.appendChild(rdiv);
+          });
+        }
+
+        const actions = document.createElement('div'); actions.className='ticket-actions';
+        const textarea = document.createElement('textarea'); textarea.placeholder='Type a response here...'; textarea.style.width='100%'; textarea.style.marginTop='0.75rem'; textarea.style.padding='0.75rem'; textarea.style.background='rgba(5,12,7,0.8)'; textarea.style.border='1px solid rgba(16,185,129,0.12)'; textarea.style.color='var(--kone-text-secondary)';
+        body.appendChild(textarea);
+
+        const respondBtn = document.createElement('button'); respondBtn.className='btn-sm btn-respond'; respondBtn.textContent='Send Response';
+        respondBtn.addEventListener('click', ()=>{
+          const text = textarea.value.trim();
+          if(!text){ alert('Enter a response first.'); return; }
+          const all = loadTickets();
+          // find by timestamp+subject match (not ideal but works for local storage)
+          const pos = all.findIndex(x=>x.timestamp===t.timestamp && x.subject===t.subject && x.email===t.email);
+          if(pos===-1){ alert('Ticket not found'); return; }
+          all[pos].responses = all[pos].responses||[];
+          all[pos].responses.push({text,by:'staff',at:new Date().toISOString()});
+          all[pos].status = 'responded';
+          saveTickets(all);
+          textarea.value='';
+          renderTickets();
+          alert('Response saved locally and ticket status set to responded.');
+        });
+
+        const closeBtn = document.createElement('button'); closeBtn.className='btn-sm btn-close'; closeBtn.textContent='Mark Closed';
+        closeBtn.addEventListener('click', ()=>{
+          if(!confirm('Mark this ticket as closed?')) return;
+          const all = loadTickets();
+          const pos = all.findIndex(x=>x.timestamp===t.timestamp && x.subject===t.subject && x.email===t.email);
+          if(pos===-1){ alert('Ticket not found'); return; }
+          all[pos].status='closed'; saveTickets(all); renderTickets();
+        });
+
+        const reopenBtn = document.createElement('button'); reopenBtn.className='btn-sm'; reopenBtn.textContent='Reopen';
+        reopenBtn.addEventListener('click', ()=>{
+          const all = loadTickets(); const pos = all.findIndex(x=>x.timestamp===t.timestamp && x.subject===t.subject && x.email===t.email);
+          if(pos===-1){ alert('Ticket not found'); return; }
+          all[pos].status='open'; saveTickets(all); renderTickets();
+        });
+
+        actions.appendChild(respondBtn); actions.appendChild(closeBtn); actions.appendChild(reopenBtn);
+        body.appendChild(actions);
+
+        div.appendChild(body);
+        ticketsEl.appendChild(div);
+      });
+    }
+
+    refreshBtn.addEventListener('click', renderTickets);
+    exportBtn.addEventListener('click', ()=>{
+      const data = loadTickets();
+      const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'supportTickets.json'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    clearResponsesBtn.addEventListener('click', ()=>{
+      if(!confirm('Remove all responses from tickets? This cannot be undone.')) return;
+      const all = loadTickets(); all.forEach(t=>{ delete t.responses; t.status = t.status==='closed'?'closed':'new'; }); saveTickets(all); renderTickets();
+    });
+
+    // Convenience: quick navigation if someone opens the page while not authenticated
+    document.addEventListener('keydown', (e)=>{
+      if(e.ctrlKey && e.key === 'l'){
+        // focus login input
+        staffKeyInput.focus();
+      }
+    });
+  </script>
+
+</body>
+</html>
