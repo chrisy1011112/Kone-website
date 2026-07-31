@@ -3,74 +3,189 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kone - Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+  <title>Products - Kone</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#050c07] text-gray-300 antialiased min-h-screen flex">
+<body>
 
-  <aside class="w-64 bg-[#08120b] border-r border-emerald-950/60 flex flex-col justify-between shrink-0 h-screen sticky top-0 z-20">
-    <div>
-      <div class="px-6 py-5 flex items-center gap-2">
-        <span class="text-white text-2xl font-bold tracking-tight">Kone</span>
-      </div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="index.html">Kone</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="about.html">About</a>
+      <a href="status.html">Status</a>
+    </div>
+    <div class="user-profile">
+      <div class="avatar-placeholder">U</div>
+      <span>User</span>
+      <span class="status-dot"></span>
+    </div>
+  </nav>
 
-      <nav class="px-3 space-y-6">
-        <div>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-950/60 text-white font-medium text-sm transition-colors border border-emerald-800/40">
-            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-            Products
-          </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-emerald-950/30 font-medium text-sm transition-colors mt-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-            Transfers
-          </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-emerald-950/30 font-medium text-sm transition-colors mt-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-            Premium
-          </a>
-        </div>
-
-        <div>
-          <div class="px-3 text-xs font-semibold text-emerald-600/70 uppercase tracking-wider mb-2">Management</div>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-emerald-950/30 font-medium text-sm transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-            Support
-          </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-emerald-950/30 font-medium text-sm transition-colors mt-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            Settings
-          </a>
-        </div>
-
-        <div>
-          <div class="px-3 text-xs font-semibold text-emerald-600/70 uppercase tracking-wider mb-2">Resources</div>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-emerald-950/30 font-medium text-sm transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-            Documentation
-          </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-emerald-950/30 font-medium text-sm transition-colors mt-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-            Discord Server
-          </a>
-        </div>
-      </nav>
+  <div class="container">
+    <div class="page-header">
+      <h1>Available Products</h1>
+      <p class="subtitle">Explore our premium tools and assets designed for your success.</p>
     </div>
 
-    <div class="p-4 border-t border-emerald-950/60 flex items-center gap-3">
-      <img src="https://cdn.discordapp.com/avatars/1189951070160568441/d7efed9cfd3bc395a64eb93dcf6ece11.png" class="w-8 h-8 rounded-full bg-emerald-950" alt="Avatar">
-      <span class="text-sm font-semibold text-white truncate">chrisy101112_40700</span>
-    </div>
-  </aside>
-
-  <div class="flex-1 flex flex-col min-w-0">
-    
-    <header class="h-16 border-b border-emerald-950/60 px-8 flex items-center justify-between sticky top-0 bg-[#050c07]/90 backdrop-blur z-10">
-      <div class="flex items-center gap-2">
-        <h1 class="text-white font-semibold text-sm">Products</h1>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-icon">🚀</div>
+        <h3>Premium Bot</h3>
+        <p class="product-desc">Advanced automation tool with AI-powered features</p>
+        <div class="product-meta">
+          <span class="price">$29.99/mo</span>
+          <span class="badge popular">Popular</span>
+        </div>
+        <ul class="product-features">
+          <li>✓ Unlimited commands</li>
+          <li>✓ Custom automations</li>
+          <li>✓ Priority support</li>
+          <li>✓ Advanced analytics</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
       </div>
 
-      <div class="flex items-center gap-4">
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-icon">📊</div>
+        <h3>Analytics Suite</h3>
+        <p class="product-desc">Comprehensive data insights and reporting tools</p>
+        <div class="product-meta">
+          <span class="price">$19.99/mo</span>
+          <span class="badge new">New</span>
+        </div>
+        <ul class="product-features">
+          <li>✓ Real-time dashboards</li>
+          <li>✓ Custom reports</li>
+          <li>✓ Data export</li>
+          <li>✓ API access</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-icon">🔐</div>
+        <h3>Security Shield</h3>
+        <p class="product-desc">Enterprise-grade security and protection systems</p>
+        <div class="product-meta">
+          <span class="price">$39.99/mo</span>
+          <span class="badge premium">Premium</span>
+        </div>
+        <ul class="product-features">
+          <li>✓ 24/7 monitoring</li>
+          <li>✓ Threat detection</li>
+          <li>✓ Auto-response</li>
+          <li>✓ Compliance tools</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-icon">💬</div>
+        <h3>Communication Hub</h3>
+        <p class="product-desc">Unified messaging and collaboration platform</p>
+        <div class="product-meta">
+          <span class="price">$24.99/mo</span>
+          <span class="badge"></span>
+        </div>
+        <ul class="product-features">
+          <li>✓ Team messaging</li>
+          <li>✓ File sharing</li>
+          <li>✓ Video calls</li>
+          <li>✓ Integration support</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <div class="product-icon">⚙️</div>
+        <h3>Workflow Automation</h3>
+        <p class="product-desc">Streamline processes with intelligent workflow tools</p>
+        <div class="product-meta">
+          <span class="price">$34.99/mo</span>
+          <span class="badge popular">Popular</span>
+        </div>
+        <ul class="product-features">
+          <li>✓ Visual editor</li>
+          <li>✓ Template library</li>
+          <li>✓ Scheduling</li>
+          <li>✓ Error handling</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <div class="product-icon">📈</div>
+        <h3>Growth Toolkit</h3>
+        <p class="product-desc">Marketing and growth optimization solutions</p>
+        <div class="product-meta">
+          <span class="price">$22.99/mo</span>
+          <span class="badge new">New</span>
+        </div>
+        <ul class="product-features">
+          <li>✓ Campaign builder</li>
+          <li>✓ A/B testing</li>
+          <li>✓ User segmentation</li>
+          <li>✓ ROI tracking</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card">
+        <div class="product-icon">🎨</div>
+        <h3>Design Studio</h3>
+        <p class="product-desc">Creative tools for designers and content creators</p>
+        <div class="product-meta">
+          <span class="price">$26.99/mo</span>
+          <span class="badge"></span>
+        </div>
+        <ul class="product-features">
+          <li>✓ Template library</li>
+          <li>✓ Asset manager</li>
+          <li>✓ Collaboration</li>
+          <li>✓ Export formats</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card">
+        <div class="product-icon">🌐</div>
+        <h3>API Accelerator</h3>
+        <p class="product-desc">Developer tools for seamless API integration</p>
+        <div class="product-meta">
+          <span class="price">$44.99/mo</span>
+          <span class="badge premium">Premium</span>
+        </div>
+        <ul class="product-features">
+          <li>✓ SDK libraries</li>
+          <li>✓ Documentation</li>
+          <li>✓ Testing tools</li>
+          <li>✓ Rate limits</li>
+        </ul>
+        <button class="btn-acquire">Get Access</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.btn-acquire').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const productName = this.closest('.product-card').querySelector('h3').textContent;
+        alert('Great choice! You are purchasing: ' + productName);
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -2,21 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About - My Awesome Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Kone</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="products.html">Products</a> |
-    <a href="about.html">About</a> |
-    <a href="contact.html">Contact</a>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="index.html">Kone</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html" class="active">About</a>
+      <a href="status.html">Status</a>
+    </div>
+    <div class="user-profile">
+      <div class="avatar-placeholder">U</div>
+      <span>User</span>
+      <span class="status-dot"></span>
+    </div>
   </nav>
 
-  <hr>
+  <div class="container">
+    <div class="page-header">
+      <h1>About Kone</h1>
+      <p class="subtitle">Discover the power behind our platform</p>
+    </div>
 
-  <h1>About Us</h1>
-  <p>This is where you tell your store's story or introduce yourself!</p>
+    <section style="background: rgba(8, 18, 11, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+      <h2 style="color: #34d399; margin-bottom: 1rem;">Our Mission</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: var(--kone-text-secondary);">
+        Kone is designed to provide powerful, reliable tools with an incredibly simple user experience. We believe that advanced functionality shouldn't come at the cost of usability. Our platform combines cutting-edge technology with intuitive design to help you achieve more.
+      </p>
+    </section>
+
+    <section style="background: rgba(8, 18, 11, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+      <h2 style="color: #34d399; margin-bottom: 1rem;">Why Choose Kone?</h2>
+      <ul style="list-style: none; font-size: 1.1rem; color: var(--kone-text-secondary); line-height: 2;">
+        <li>✨ <strong style="color: #34d399;">Fast & Reliable</strong> - Lightning-fast performance with 99.9% uptime</li>
+        <li>🔒 <strong style="color: #34d399;">Secure</strong> - Enterprise-grade security for your peace of mind</li>
+        <li>🎯 <strong style="color: #34d399;">User-Focused</strong> - Designed by users, for users</li>
+        <li>🚀 <strong style="color: #34d399;">Always Improving</strong> - Regular updates and new features</li>
+        <li>💬 <strong style="color: #34d399;">Great Support</strong> - Real support from real people</li>
+      </ul>
+    </section>
+
+    <section style="background: rgba(8, 18, 11, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 2rem;">
+      <h2 style="color: #34d399; margin-bottom: 1rem;">Our Values</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+        <div>
+          <h3 style="color: #34d399; margin-bottom: 0.5rem;">Innovation</h3>
+          <p style="color: var(--kone-text-tertiary);">We continuously push boundaries and develop cutting-edge solutions.</p>
+        </div>
+        <div>
+          <h3 style="color: #34d399; margin-bottom: 0.5rem;">Transparency</h3>
+          <p style="color: var(--kone-text-tertiary);">Open communication and honest practices guide all our decisions.</p>
+        </div>
+        <div>
+          <h3 style="color: #34d399; margin-bottom: 0.5rem;">Quality</h3>
+          <p style="color: var(--kone-text-tertiary);">Excellence in every product and service we deliver to our users.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 
 </body>
 </html>
