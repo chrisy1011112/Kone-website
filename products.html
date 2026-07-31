@@ -2,31 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Products - My Awesome Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products & Tools - Kone</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="products.html">Products</a> |
-    <a href="about.html">About</a> |
-    <a href="contact.html">Contact</a>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="index.html">Kone</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="status.html">Status</a>
+    </div>
+    <div class="user-profile">
+      <div class="avatar-placeholder">U</div>
+      <span>User</span>
+      <span class="status-dot"></span>
+    </div>
   </nav>
 
-  <hr>
+  <div class="container">
+    <div class="page-header">
+      <h1>Available Tools</h1>
+      <p class="subtitle">Select a tool below to configure and launch.</p>
+    </div>
 
-  <h1>Our Products</h1>
-  
-  <ul>
-    <li>
-      <h3>Product 1</h3>
-      <p>Description of your awesome product goes here.</p>
-    </li>
-    <li>
-      <h3>Product 2</h3>
-      <p>Description of another awesome product.</p>
-    </li>
-  </ul>
+    <div class="product-grid">
+      
+      <div class="card">
+        <div class="card-header">
+          <h3>Discord Bot Manager</h3>
+          <span class="badge online">v2.1</span>
+        </div>
+        <p>Automate role assignments, moderation, and welcome messages effortlessly.</p>
+        <a href="#" class="btn-card">Launch Tool</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Server Analytics</h3>
+          <span class="badge online">Active</span>
+        </div>
+        <p>Track server activity, member growth, and peak engagement hours in real-time.</p>
+        <a href="#" class="btn-card">View Stats</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Webhook Injector</h3>
+          <span class="badge popular">Popular</span>
+        </div>
+        <p>Send customized rich embeds and automated alerts directly to your channels.</p>
+        <a href="#" class="btn-card">Configure</a>
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
