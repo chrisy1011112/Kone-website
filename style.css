@@ -1,0 +1,81 @@
+/* --- Global Resets & Centering --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Inter, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Dark background with green radial spotlight effect */
+  background: radial-gradient(circle at center, #0f3d23 0%, #06140b 60%, #030804 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* --- Hero Layout --- */
+.hero-container {
+  text-align: center;
+  max-width: 500px;
+  padding: 20px;
+}
+
+/* --- Logo Styling --- */
+.logo-wrapper {
+  margin-bottom: 20px;
+}
+
+.discord-icon {
+  width: 45px;
+  height: 45px;
+  opacity: 0.9;
+}
+
+/* --- Typography --- */
+h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  color: #2ecc71; /* Vibrant green text accent */
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #a0aec0; /* Soft gray muted text */
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+/* --- Modern Login Button --- */
+.btn-discord {
+  display: inline-block;
+  background-color: #25c967; /* Bright modern green */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(37, 201, 103, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-discord:hover {
+  background-color: #1eb058;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 201, 103, 0.4);
+}
+
+.btn-discord:active {
+  transform: translateY(0);
+}
