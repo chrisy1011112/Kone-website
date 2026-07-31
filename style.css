@@ -1,4 +1,4 @@
-/* --- Global Resets & Styles --- */
+/* --- Global Resets & Layout --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,9 +8,10 @@
 body {
   font-family: 'Segoe UI', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
-  background: radial-gradient(circle at center, #0f3d23 0%, #06140b 60%, #030804 100%);
+  /* Fixed green radial background that won't break on scroll or image load */
+  background: radial-gradient(circle at center, #0f3d23 0%, #06140b 60%, #030804 100%) no-repeat center center fixed;
+  background-size: cover;
   color: #ffffff;
-  background-attachment: fixed;
 }
 
 /* --- Top Navigation Bar --- */
@@ -19,7 +20,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: rgba(3, 8, 4, 0.7);
+  background: rgba(3, 8, 4, 0.75);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: sticky;
@@ -98,22 +99,18 @@ body {
   color: #a0aec0;
 }
 
-/* --- Products Cards Grid --- */
+/* --- Product Cards Grid --- */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 24px;
   backdrop-filter: blur(5px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -129,24 +126,85 @@ body {
   margin-bottom: 12px;
 }
 
-.card p {
+/* --- Product Detailed (Roblox Item) --- */
+.product-card-detailed {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card-media {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background-color: #0d2818;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.price-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #25c967;
+  color: #030804;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card-content {
+  padding: 24px;
+}
+
+.description {
   color: #a0aec0;
   font-size: 0.95rem;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
+/* --- Feature List --- */
+.feature-list {
+  list-style: none;
+  margin: 15px 0;
+  padding: 0;
+}
+
+.feature-list li {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-note {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  margin: 15px 0;
+}
+
+/* --- Buttons & Badges --- */
 .btn-card {
   display: block;
   text-align: center;
   background: rgba(37, 201, 103, 0.15);
   color: #2ecc71;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   border: 1px solid rgba(37, 201, 103, 0.3);
   transition: all 0.2s ease;
+  margin-top: 10px;
 }
 
 .btn-card:hover {
@@ -154,7 +212,16 @@ body {
   color: #fff;
 }
 
-/* --- Badges --- */
+.primary-btn {
+  background: #25c967;
+  color: #ffffff;
+  border: none;
+}
+
+.primary-btn:hover {
+  background: #1eb058;
+}
+
 .badge {
   font-size: 0.75rem;
   padding: 4px 10px;
@@ -167,17 +234,12 @@ body {
   color: #2ecc71;
 }
 
-.badge.popular {
-  background: rgba(241, 196, 15, 0.15);
-  color: #f1c40f;
-}
-
 .badge.maintenance {
   background: rgba(230, 126, 34, 0.15);
   color: #e67e22;
 }
 
-/* --- Status Page --- */
+/* --- Status Page Styles --- */
 .status-banner {
   background: rgba(46, 204, 113, 0.1);
   border: 1px solid rgba(46, 204, 113, 0.3);
