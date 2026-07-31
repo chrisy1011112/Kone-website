@@ -3,96 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products & Assets - Kone</title>
+  <title>Products - Kone</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dashboard-body">
 
-  <nav class="navbar">
-    <div class="nav-brand">
-      <a href="index.html">Kone</a>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html" class="active">Products</a>
-      <a href="status.html">Status</a>
-    </div>
-    <div class="user-profile">
-      <div class="avatar-placeholder">U</div>
-      <span>User</span>
-      <span class="status-dot"></span>
-    </div>
-  </nav>
-
-  <div class="container">
-    <div class="page-header">
-      <h1>Available Assets & Tools</h1>
-      <p class="subtitle">Select a product below to view details or acquire.</p>
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Kone</h2>
     </div>
 
-    <div class="product-grid">
-      
-      <div class="card product-card-detailed">
-        <div class="card-media">
-          <img src="https://cdn.discordapp.com/attachments/1530902854359842847/1530902854733140220/7C6F7A4B-7EEC-4868-9AA5-6CC16F504E78.png?ex=6a6ddb63&is=6a6c89e3&hm=002b49b4e935c8f1f48f56b4004f3ce4a62aecbe492068b26bc27cdf7b15470b&" alt="Kone Nametag Showcase" class="product-img">
-          <span class="price-badge">90 ROBUX</span>
+    <div class="sidebar-section">
+      <a href="products.html" class="nav-item active">
+        <span class="icon">📦</span> Products
+      </a>
+      <a href="status.html" class="nav-item">
+        <span class="icon">⚡</span> Status
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">👑</span> Premium
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="section-title">RESOURCES</span>
+      <a href="#" class="nav-item">
+        <span class="icon">📁</span> Documentation
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">💬</span> Discord Server
+      </a>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="avatar">U</div>
+        <span>User#0000</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1>Products</h1>
+      </div>
+      <div class="topbar-actions">
+        <div class="points-badge">✨ 0 pts</div>
+        <div class="user-badge">
+          <div class="avatar">U</div>
+          <span>User#0000</span>
         </div>
+      </div>
+    </header>
 
-        <div class="card-content">
-          <div class="card-header">
-            <h3>Kone | Nametag</h3>
-            <span class="badge online">Available</span>
+    <div class="dashboard-grid">
+
+      <div class="dash-card">
+        <div class="dash-card-media">
+          <img src="https://cdn.discordapp.com/attachments/1530902854359842847/1530902854733140220/7C6F7A4B-7EEC-4868-9AA5-6CC16F504E78.png?ex=6a6ddb63&is=6a6c89e3&hm=002b49b4e935c8f1f48f56b4004f3ce4a62aecbe492068b26bc27cdf7b15470b&" alt="Kone Nametag">
+        </div>
+        <div class="dash-card-body">
+          <h3>easyNametags</h3>
+          <div class="button-group">
+            <a href="#" class="btn-green">Download</a>
+            <a href="#" class="btn-gray">Edit</a>
           </div>
-
-          <p class="description">
-            A clean and customizable nametag system designed to make your game stand out.
-          </p>
-
-          <ul class="feature-list">
-            <li>✨ <strong>Rainbow Text Effects</strong></li>
-            <li>🏷️ <strong>Custom Tags System</strong></li>
-            <li>👥 <strong>Group Integration</strong></li>
-            <li>⚙️ <strong>Easy Customization</strong></li>
-            <li>🔌 <em>API support coming soon</em></li>
-          </ul>
-
-          <p class="footer-note">Get Kone | Nametag now and create unique, stylish nametags for your players!</p>
-
-          <a href="#" class="btn-card primary-btn">Get Asset Now</a>
         </div>
       </div>
 
-      <div class="card product-card-detailed">
-        <div class="card-media">
+      <div class="dash-card">
+        <div class="dash-card-media">
           <img src="https://cdn.discordapp.com/attachments/1530130014333435944/1530130014513926254/2F78FDDA-263A-4890-B93E-C27691408C41.png?ex=6a6e575f&is=6a6d05df&hm=4a54ad715a1ed412ce9d989a5fa4711834037992d60109878af3e40932f20f65&" alt="Kone Restaurant Showcase" class="product-img">
-          <span class="price-badge">120 ROBUX</span>
         </div>
-
-        <div class="card-content">
-          <div class="card-header">
-            <h3>Kone | Restaurant</h3>
-            <span class="badge online">Available</span>
+        <div class="dash-card-body">
+          <h3>Kone Restaurant</h3>
+          <div class="button-group">
+            <a href="#" class="btn-green">Download</a>
           </div>
+        </div>
+      </div>
 
-          <p class="description">
-            High-quality modern restaurant build designed for Roblox roleplay and cafe games.
-          </p>
+      <div class="dash-card">
+        <div class="dash-card-media placeholder-media">
+          <span>📊</span>
+        </div>
+        <div class="dash-card-body">
+          <h3>easyAnalytics</h3>
+          <div class="button-group">
+            <a href="#" class="btn-green">Download</a>
+            <a href="#" class="btn-gray">Edit</a>
+          </div>
+        </div>
+      </div>
 
-          <ul class="feature-list">
-            <li>⭐ <strong>High Quality Exterior</strong></li>
-            <li>🏢 <strong>Modern Architecture</strong></li>
-            <li>🅿️ <strong>Parking Lot Included</strong></li>
-            <li>🧱 <strong>No Interior (Exterior Only)</strong></li>
-          </ul>
+      <div class="dash-card">
+        <div class="dash-card-media placeholder-media">
+          <span>📚</span>
+        </div>
+        <div class="dash-card-body">
+          <h3>easyRanking</h3>
+          <div class="button-group">
+            <a href="#" class="btn-gray full-width">Edit</a>
+          </div>
+        </div>
+      </div>
 
-          <p class="footer-note">Get Kone | Restaurant now for your game!</p>
-
-          <a href="#" class="btn-card primary-btn">Get Asset Now</a>
+      <div class="dash-card info-card">
+        <div class="info-content">
+          <span class="sparkle-icon">✨</span>
+          <h3>Curious for more?</h3>
+          <p>Click on any product card to explore its full features, read documentation, and watch a video demo!</p>
         </div>
       </div>
 
     </div>
-  </div>
+
+  </main>
 
 </body>
 </html>
