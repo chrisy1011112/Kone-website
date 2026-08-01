@@ -8,15 +8,16 @@
 </head>
 <body>
 
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Top">
     <div class="nav-brand">
       <a href="index.html">Kone</a>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="topNav">
       <a href="index.html">Home</a>
-      <a href="products.html" class="active">Products</a>
+      <a href="products.html">Products</a>
       <a href="about.html">About</a>
       <a href="support.html">Support</a>
+      <a href="staff.html">Staff</a>
       <a href="status.html">Status</a>
     </div>
     <div class="user-profile">
@@ -25,6 +26,17 @@
       <span class="status-dot"></span>
     </div>
   </nav>
+
+  <script>
+    (function markActiveNav() {
+      try {
+        const current = (location.pathname.split('/').pop() || 'index.html');
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === current);
+        });
+      } catch (e) { }
+    })();
+  </script>
 
   <div class="container">
     <div class="page-header">
