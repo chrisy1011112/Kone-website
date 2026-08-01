@@ -3,257 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kone - Assets & Tools</title>
-    <style>
-        /* --- Dark Theme Setup --- */
-        :root {
-            --bg-color: #060e0a;
-            --card-bg: #0c1812;
-            --card-border: #142a1f;
-            --accent-color: #22c55e;
-            --accent-hover: #16a34a;
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --badge-bg: rgba(34, 197, 94, 0.15);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- Navigation Bar --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 3rem;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a.active, nav a:hover {
-            color: var(--accent-color);
-        }
-
-        .user-profile {
-            background: #12241b;
-            border: 1px solid var(--card-border);
-            padding: 0.4rem 0.8rem;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .avatar {
-            width: 24px;
-            height: 24px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-size: 0.75rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            text-align: center;
-            margin: 3rem 0 2rem;
-            padding: 0 1rem;
-        }
-
-        .hero h1 {
-            font-size: 2.75rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        /* --- Main Content Grid --- */
-        main {
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        /* --- Asset Card --- */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-image-container {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background-color: #1a2e23;
-        }
-
-        .card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .price-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background-color: var(--accent-color);
-            color: #000;
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 0.3rem 0.75rem;
-            border-radius: 9999px;
-            text-transform: uppercase;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .status-badge {
-            background-color: var(--badge-bg);
-            color: var(--accent-color);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        .card-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.4;
-            margin-bottom: 1.25rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .feature-list li {
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .feature-list li.italic {
-            font-style: italic;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .callout-text {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .btn-action {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--accent-color);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: auto;
-        }
-
-        .btn-action:hover {
-            background-color: var(--accent-hover);
-        }
-    </style>
+    <title>Kone - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="logo">Kone</div>
         <nav>
-            <a href="#">Home</a>
-            <a href="#" class="active">Products</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="products.html">Products</a>
             <a href="#">Status</a>
+            <a href="#">Support</a>
+            <a href="#">Staff</a>
         </nav>
         <div class="user-profile">
             <div class="avatar">U</div>
@@ -262,17 +24,15 @@
         </div>
     </header>
 
-    <section class="hero">
-        <h1>Available Assets & Tools</h1>
-        <p>Select a product below to view details or acquire.</p>
+    <section class="hero" style="margin-top: 6rem;">
+        <h1>Welcome to Kone</h1>
+        <p>Your one-stop destination for high-quality Roblox assets, builds, and tools.</p>
+        <div style="margin-top: 2rem;">
+            <a href="products.html" style="text-decoration: none;">
+                <button class="btn-action" style="width: auto; padding: 0.8rem 2rem;">Browse Products</button>
+            </a>
+        </div>
     </section>
 
-    <main>
-        <div class="card">
-            <div class="card-image-container">
-                <img src="https://via.placeholder.com/600x400/12241b/ffffff?text=Nametag+Preview" alt="Nametag Preview" class="card-image">
-                <div class="price-badge">90 ROBUX</div>
-            </div>
-            <div class="card-content">
-                <div class="card-header">
-                    <h2 class="card-
+</body>
+</html>
