@@ -25,13 +25,14 @@
 </head>
 <body>
 
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Top">
     <div class="nav-brand"><a href="index.html">Kone</a></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="about.html">About</a>
       <a href="support.html">Support</a>
+      <a href="staff.html" class="active">Staff</a>
       <a href="status.html">Status</a>
     </div>
     <div class="user-profile">
@@ -41,21 +42,32 @@
     </div>
   </nav>
 
+  <script>
+    (function markActiveNav() {
+      try {
+        const current = (location.pathname.split('/').pop() || 'index.html');
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === current);
+        });
+      } catch (e) { }
+    })();
+  </script>
+
   <main class="staff-container">
     <div class="page-header">
       <h1>Staff Dashboard</h1>
-      <p class="subtitle">View and respond to support tickets. This page uses client-side storage (localStorage) and simple client-side access control. For production, use a real backend and authentication.</p>
+      <p class="subtitle">View and respond to support tickets. This page uses client-side storage (localStorage) and simple client-side access control. For production, use a real backend and authe[...]</p>
     </div>
 
     <div id="login" class="login-box">
       <h3>Staff login</h3>
       <p style="color:var(--kone-text-tertiary);margin-bottom:0.5rem">Enter the staff access key (configured in browser localStorage) to view tickets.</p>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-        <input id="staffKeyInput" type="password" placeholder="Enter staff key" style="padding:0.6rem;border-radius:6px;border:1px solid rgba(16,185,129,0.15);background:rgba(5,12,7,0.8);color:var(--kone-text-secondary);flex:1" />
+        <input id="staffKeyInput" type="password" placeholder="Enter staff key" style="padding:0.6rem;border-radius:6px;border:1px solid rgba(16,185,129,0.15);background:rgba(5,12,7,0.8);color:var(--kone-text-secondary)">
         <button id="loginBtn" class="btn-sm btn-respond">Unlock</button>
         <button id="setKeyBtn" class="btn-sm btn-export">Set key</button>
       </div>
-      <p style="margin-top:0.5rem;color:var(--kone-text-tertiary);font-size:0.9rem">If no access key is set, click "Set key" to store the value you entered into localStorage as the staff key. (This stores the key in your browser.)</p>
+      <p style="margin-top:0.5rem;color:var(--kone-text-tertiary);font-size:0.9rem">If no access key is set, click "Set key" to store the value you entered into localStorage as the staff key. (Thi...)</p>
     </div>
 
     <div id="staffArea" class="hidden">
@@ -158,13 +170,13 @@
 
         if(t.responses){
           t.responses.forEach(r=>{
-            const rdiv = document.createElement('div'); rdiv.style.marginTop='0.5rem'; rdiv.innerHTML = `<div style="color:#34d399;font-weight:700">Response</div><div style="color:var(--kone-text-secondary)">${r.text}</div><div class="ticket-meta">By: ${r.by||'staff'} • ${new Date(r.at).toLocaleString()}</div>`;
+            const rdiv = document.createElement('div'); rdiv.style.marginTop='0.5rem'; rdiv.innerHTML = `<div style="color:#34d399;font-weight:700">Response</div><div style="color:var(--kone-text-secondary)">${r.text}</div>`;
             body.appendChild(rdiv);
           });
         }
 
         const actions = document.createElement('div'); actions.className='ticket-actions';
-        const textarea = document.createElement('textarea'); textarea.placeholder='Type a response here...'; textarea.style.width='100%'; textarea.style.marginTop='0.75rem'; textarea.style.padding='0.75rem'; textarea.style.background='rgba(5,12,7,0.8)'; textarea.style.border='1px solid rgba(16,185,129,0.12)'; textarea.style.color='var(--kone-text-secondary)';
+        const textarea = document.createElement('textarea'); textarea.placeholder='Type a response here...'; textarea.style.width='100%'; textarea.style.marginTop='0.75rem'; textarea.style.padding='0.5rem';
         body.appendChild(textarea);
 
         const respondBtn = document.createElement('button'); respondBtn.className='btn-sm btn-respond'; respondBtn.textContent='Send Response';
@@ -172,7 +184,6 @@
           const text = textarea.value.trim();
           if(!text){ alert('Enter a response first.'); return; }
           const all = loadTickets();
-          // find by timestamp+subject match (not ideal but works for local storage)
           const pos = all.findIndex(x=>x.timestamp===t.timestamp && x.subject===t.subject && x.email===t.email);
           if(pos===-1){ alert('Ticket not found'); return; }
           all[pos].responses = all[pos].responses||[];
@@ -221,10 +232,8 @@
       const all = loadTickets(); all.forEach(t=>{ delete t.responses; t.status = t.status==='closed'?'closed':'new'; }); saveTickets(all); renderTickets();
     });
 
-    // Convenience: quick navigation if someone opens the page while not authenticated
     document.addEventListener('keydown', (e)=>{
       if(e.ctrlKey && e.key === 'l'){
-        // focus login input
         staffKeyInput.focus();
       }
     });
