@@ -1,204 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - Kone</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kone - Products</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav class="navbar" role="navigation" aria-label="Top">
-    <div class="nav-brand">
-      <a href="index.html">Kone</a>
-    </div>
-    <div class="nav-links" id="topNav">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="about.html">About</a>
-      <a href="support.html">Support</a>
-      <a href="staff.html">Staff</a>
-      <a href="status.html">Status</a>
-    </div>
-    <div class="user-profile">
-      <div class="avatar-placeholder">U</div>
-      <span>User</span>
-      <span class="status-dot"></span>
-    </div>
-  </nav>
-
-  <script>
-    (function markActiveNav() {
-      try {
-        const current = (location.pathname.split('/').pop() || 'index.html');
-        document.querySelectorAll('.nav-links a').forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === current);
-        });
-      } catch (e) { }
-    })();
-  </script>
-
-  <div class="container">
-    <div class="page-header">
-      <h1>Available Products</h1>
-      <p class="subtitle">Explore our premium tools and assets designed for your success.</p>
-    </div>
-
-    <div class="products-grid">
-      <!-- Product 1 -->
-      <div class="product-card">
-        <div class="product-icon">🚀</div>
-        <h3>Premium Bot</h3>
-        <p class="product-desc">Advanced automation tool with AI-powered features</p>
-        <div class="product-meta">
-          <span class="price">$29.99/mo</span>
-          <span class="badge popular">Popular</span>
+    <header>
+        <div class="logo">Kone</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="#">Status</a>
+            <a href="#">Support</a>
+            <a href="#">Staff</a>
+        </nav>
+        <div class="user-profile">
+            <div class="avatar">U</div>
+            <span>User</span>
+            <div class="status-dot"></div>
         </div>
-        <ul class="product-features">
-          <li>✓ Unlimited commands</li>
-          <li>✓ Custom automations</li>
-          <li>✓ Priority support</li>
-          <li>✓ Advanced analytics</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
+    </header>
 
-      <!-- Product 2 -->
-      <div class="product-card">
-        <div class="product-icon">📊</div>
-        <h3>Analytics Suite</h3>
-        <p class="product-desc">Comprehensive data insights and reporting tools</p>
-        <div class="product-meta">
-          <span class="price">$19.99/mo</span>
-          <span class="badge new">New</span>
+    <section class="hero">
+        <h1>Available Assets & Tools</h1>
+        <p>Select a product below to view details or acquire.</p>
+    </section>
+
+    <main>
+        <div class="card">
+            <div class="card-image-container">
+                <img src="nametag-preview.jpg" alt="Nametag Preview" class="card-image">
+                <div class="price-badge">90 ROBUX</div>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h2 class="card-title">Kone | Nametag</h2>
+                    <span class="status-badge">Available</span>
+                </div>
+                <p class="card-description">
+                    A clean and customizable nametag system designed to make your game stand out.
+                </p>
+                <ul class="feature-list">
+                    <li>✨ Rainbow Text Effects</li>
+                    <li>🏷️ Custom Tags System</li>
+                    <li>👥 Group Integration</li>
+                    <li>⚙️ Easy Customization</li>
+                    <li class="italic">🔌 API support coming soon</li>
+                </ul>
+                <p class="callout-text">Get Kone | Nametag now and create unique, stylish nametags for your players!</p>
+                <button class="btn-action">Get Asset Now</button>
+            </div>
         </div>
-        <ul class="product-features">
-          <li>✓ Real-time dashboards</li>
-          <li>✓ Custom reports</li>
-          <li>✓ Data export</li>
-          <li>✓ API access</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
 
-      <!-- Product 3 -->
-      <div class="product-card">
-        <div class="product-icon">🔐</div>
-        <h3>Security Shield</h3>
-        <p class="product-desc">Enterprise-grade security and protection systems</p>
-        <div class="product-meta">
-          <span class="price">$39.99/mo</span>
-          <span class="badge premium">Premium</span>
+        <div class="card">
+            <div class="card-image-container">
+                <img src="restaurant-preview.jpg" alt="Restaurant Preview" class="card-image">
+                <div class="price-badge">120 ROBUX</div>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h2 class="card-title">Kone | Restaurant</h2>
+                    <span class="status-badge">Available</span>
+                </div>
+                <p class="card-description">
+                    High-quality modern restaurant build designed for Roblox roleplay and cafe games.
+                </p>
+                <ul class="feature-list">
+                    <li>⭐ High Quality Exterior</li>
+                    <li>🏢 Modern Architecture</li>
+                    <li>🅿️ Parking Lot Included</li>
+                    <li>📦 No Interior (Exterior Only)</li>
+                </ul>
+                <p class="callout-text">Get Kone | Restaurant now for your game!</p>
+                <button class="btn-action">Get Asset Now</button>
+            </div>
         </div>
-        <ul class="product-features">
-          <li>✓ 24/7 monitoring</li>
-          <li>✓ Threat detection</li>
-          <li>✓ Auto-response</li>
-          <li>✓ Compliance tools</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="product-card">
-        <div class="product-icon">💬</div>
-        <h3>Communication Hub</h3>
-        <p class="product-desc">Unified messaging and collaboration platform</p>
-        <div class="product-meta">
-          <span class="price">$24.99/mo</span>
-          <span class="badge"></span>
-        </div>
-        <ul class="product-features">
-          <li>✓ Team messaging</li>
-          <li>✓ File sharing</li>
-          <li>✓ Video calls</li>
-          <li>✓ Integration support</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
-
-      <!-- Product 5 -->
-      <div class="product-card">
-        <div class="product-icon">⚙️</div>
-        <h3>Workflow Automation</h3>
-        <p class="product-desc">Streamline processes with intelligent workflow tools</p>
-        <div class="product-meta">
-          <span class="price">$34.99/mo</span>
-          <span class="badge popular">Popular</span>
-        </div>
-        <ul class="product-features">
-          <li>✓ Visual editor</li>
-          <li>✓ Template library</li>
-          <li>✓ Scheduling</li>
-          <li>✓ Error handling</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
-
-      <!-- Product 6 -->
-      <div class="product-card">
-        <div class="product-icon">📈</div>
-        <h3>Growth Toolkit</h3>
-        <p class="product-desc">Marketing and growth optimization solutions</p>
-        <div class="product-meta">
-          <span class="price">$22.99/mo</span>
-          <span class="badge new">New</span>
-        </div>
-        <ul class="product-features">
-          <li>✓ Campaign builder</li>
-          <li>✓ A/B testing</li>
-          <li>✓ User segmentation</li>
-          <li>✓ ROI tracking</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
-
-      <!-- Product 7 -->
-      <div class="product-card">
-        <div class="product-icon">🎨</div>
-        <h3>Design Studio</h3>
-        <p class="product-desc">Creative tools for designers and content creators</p>
-        <div class="product-meta">
-          <span class="price">$26.99/mo</span>
-          <span class="badge"></span>
-        </div>
-        <ul class="product-features">
-          <li>✓ Template library</li>
-          <li>✓ Asset manager</li>
-          <li>✓ Collaboration</li>
-          <li>✓ Export formats</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
-
-      <!-- Product 8 -->
-      <div class="product-card">
-        <div class="product-icon">🌐</div>
-        <h3>API Accelerator</h3>
-        <p class="product-desc">Developer tools for seamless API integration</p>
-        <div class="product-meta">
-          <span class="price">$44.99/mo</span>
-          <span class="badge premium">Premium</span>
-        </div>
-        <ul class="product-features">
-          <li>✓ SDK libraries</li>
-          <li>✓ Documentation</li>
-          <li>✓ Testing tools</li>
-          <li>✓ Rate limits</li>
-        </ul>
-        <button class="btn-acquire">Get Access</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    document.querySelectorAll('.btn-acquire').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const productName = this.closest('.product-card').querySelector('h3').textContent;
-        alert('Great choice! You are purchasing: ' + productName);
-      });
-    });
-  </script>
+    </main>
 
 </body>
 </html>
