@@ -11,9 +11,9 @@
     .support-form { background: rgba(8,18,11,0.6); border: 1px solid rgba(16,185,129,0.3); border-radius:12px; padding:2rem; margin-bottom:2rem; }
     .form-group { margin-bottom:1.25rem; }
     .form-group label { display:block; color:#34d399; font-weight:600; margin-bottom:0.5rem; }
-    .form-group input, .form-group textarea, .form-group select { width:100%; padding:0.9rem; background:rgba(5,12,7,0.8); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:var(--kone-text-secondary); font-family:inherit; }
+    .form-group input, .form-group textarea, .form-group select { width:100%; padding:0.9rem; background:rgba(5,12,7,0.8); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:var(--kone-text-secondary); }
     .form-group textarea { min-height:160px; resize:vertical; }
-    .submit-btn { background: linear-gradient(135deg,#10b981 0%,#34d399 100%); color:var(--kone-dark-bg); padding:1rem 1.25rem; border:none; border-radius:8px; font-weight:700; cursor:pointer; width:100%; box-shadow:0 8px 24px rgba(16,185,129,0.28); text-transform:uppercase; }
+    .submit-btn { background: linear-gradient(135deg,#10b981 0%,#34d399 100%); color:var(--kone-dark-bg); padding:1rem 1.25rem; border:none; border-radius:8px; font-weight:700; cursor:pointer; width:100%; }
     .status-message { display:none; padding:1rem; border-radius:8px; font-weight:600; margin-bottom:1rem; text-align:center; }
     .status-message.success { display:block; background:rgba(16,185,129,0.12); color:#34d399; border:1px solid #10b981; }
     .status-message.error { display:block; background:rgba(239,68,68,0.12); color:#fca5a5; border:1px solid #ef4444; }
@@ -30,13 +30,14 @@
 <body>
 
   <!-- Top navbar (use the same markup on all pages for consistency) -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Top">
     <div class="nav-brand"><a href="index.html">Kone</a></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="about.html">About</a>
       <a href="support.html" class="active">Support</a>
+      <a href="staff.html">Staff</a>
       <a href="status.html">Status</a>
     </div>
     <div class="user-profile">
@@ -46,6 +47,18 @@
     </div>
   </nav>
 
+  <script>
+    // mark active nav link based on filename (works even if pages are moved)
+    (function markActiveNav() {
+      try {
+        const current = (location.pathname.split('/').pop() || 'index.html');
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === current);
+        });
+      } catch (e) { /* fail silently on very old browsers */ }
+    })();
+  </script>
+
   <main class="support-container">
     <header class="page-header">
       <h1>Support Center</h1>
@@ -53,7 +66,7 @@
     </header>
 
     <div class="info-box">
-      <strong>How it works:</strong> Submit this form to create a support ticket. If you configure a Discord webhook in your browser (localStorage), the form will also post details to that webhook.
+      <strong>How it works:</strong> Submit this form to create a support ticket. If you configure a Discord webhook in your browser (localStorage), the form will also post details to that webhook
     </div>
 
     <section class="support-form" aria-labelledby="support-heading">
@@ -129,14 +142,6 @@
   </main>
 
   <script>
-    // mark active nav link based on filename (works even if pages are moved)
-    (function markActiveNav() {
-      const current = (location.pathname.split('/').pop() || 'index.html');
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === current);
-      });
-    })();
-
     // form handling and local storage tickets (no backend required)
     (function supportForm() {
       const form = document.getElementById('supportForm');
